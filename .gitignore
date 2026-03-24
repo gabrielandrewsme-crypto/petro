@@ -7,6 +7,7 @@ coverage
 .agent
 data/app-db.json
 logo br.png
+logo nova br.png
 .env
 .env.local
 prisma/dev.db
