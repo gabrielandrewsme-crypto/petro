@@ -1,21 +1,77 @@
+import Link from "next/link";
 import { updateExamDateAction, updateGoalProgressAction } from "@/actions/app";
 import { Card, ProgressBar, SectionHeader } from "@/components/ui";
 import { requireUser } from "@/lib/auth";
 import { getAppData } from "@/lib/data";
+import { getActiveWeekSchedule, getTodayLesson } from "@/lib/weekly-content";
 
 export default async function CronogramaPage() {
   const user = await requireUser();
   const data = await getAppData(user.id);
+  const activeWeek = getActiveWeekSchedule();
+  const todayLesson = getTodayLesson();
 
   return (
     <>
-      <SectionHeader
-        title="Cronograma"
-        description="Semanal, mensal e plano de 100 dias com recalculo automático pela data da prova."
-      />
+      <SectionHeader title="Cronograma" description="Semanal, mensal e plano de 100 dias com recalculo automatico pela data da prova." />
 
       <section className="cards-grid">
-        <Card title="Plano de 100 dias" subtitle={`${data.schedules.remainingDays} dias restantes até a prova.`}>
+        <Card title="Semana ativa do agent" subtitle="Conteudo semanal carregado do creator content petro com datas reais.">
+          {activeWeek?.length ? (
+            <div className="list">
+              {activeWeek.map((entry) => (
+                <div className="list-item" key={`${entry.day_number}-${entry.dateLabel}`}>
+                  <div>
+                    <strong>
+                      {entry.day} • {entry.dateLabel}
+                    </strong>
+                    <p>{entry.lesson.title}</p>
+                  </div>
+                  <span className="badge">{entry.isToday ? "Hoje" : entry.type}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">Nenhuma semana ativa para a data atual.</div>
+          )}
+        </Card>
+
+        <Card title="Pacote de hoje" subtitle={todayLesson ? "Checklist, videoaulas e itens da prova ja definidos." : "Aguardando ativacao de uma semana."}>
+          {todayLesson ? (
+            <div className="list">
+              <div className="list-item">
+                <div>
+                  <strong>{todayLesson.lesson.title}</strong>
+                  <p>{todayLesson.lesson.subtopic}</p>
+                </div>
+                <span className="badge">{todayLesson.lesson.questions} questoes</span>
+              </div>
+              <div className="list-item">
+                <div>
+                  <strong>Videoaulas</strong>
+                  <p>{todayLesson.lesson.videos.length} links</p>
+                </div>
+                <span className="badge">{todayLesson.lesson.estimated_time.video_min} min</span>
+              </div>
+              <div className="list-item">
+                <div>
+                  <strong>Itens oficiais</strong>
+                  <p>{todayLesson.lesson.prova_2023_items.join(", ") || "Sem itens oficiais no dia"}</p>
+                </div>
+                <span className="badge">{todayLesson.day}</span>
+              </div>
+              <div className="cta-row" style={{ marginTop: 16 }}>
+                <Link className="primary-button" href="/estudo-hoje">
+                  Abrir estudo de hoje
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="empty-state">Nenhum material diario ativo.</div>
+          )}
+        </Card>
+
+        <Card title="Plano de 100 dias" subtitle={`${data.schedules.remainingDays} dias restantes ate a prova.`}>
           <form action={updateExamDateAction} className="form-grid two-columns">
             <label>
               <span>Data da prova</span>
@@ -60,7 +116,7 @@ export default async function CronogramaPage() {
           </div>
         </Card>
 
-        <Card title="Cronograma semanal" subtitle="Base fixa para manter cadência de disciplinas.">
+        <Card title="Cronograma semanal" subtitle="Base fixa para manter cadencia de disciplinas.">
           <div className="list">
             {data.schedules.weekly.map((goal) => (
               <div className="list-item" key={goal.id}>
@@ -75,7 +131,7 @@ export default async function CronogramaPage() {
         </Card>
       </section>
 
-      <Card title="Metas mensais" subtitle="Visão por semana com barra de progresso.">
+      <Card title="Metas mensais" subtitle="Visao por semana com barra de progresso.">
         <div className="cards-grid">
           {data.schedules.monthly.map((goal) => (
             <div className="panel" key={goal.id}>
