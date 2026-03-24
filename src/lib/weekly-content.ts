@@ -1,4 +1,5 @@
 import { addDays, differenceInCalendarDays, format, isWithinInterval, parseISO } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import week1 from "../../creator content petro/semana-01.json";
 
 type Lesson = {
@@ -76,6 +77,7 @@ export function getActiveWeekSchedule(referenceDate = new Date()) {
     return {
       ...entry,
       date,
+      calendarDayLabel: format(date, "EEEE", { locale: ptBR }),
       dateLabel: format(date, "dd/MM/yyyy"),
       isToday: differenceInCalendarDays(date, referenceDate) === 0,
       isPast: differenceInCalendarDays(referenceDate, date) > 0,

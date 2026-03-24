@@ -23,7 +23,7 @@ export default async function CronogramaPage() {
                 <div className="list-item" key={`${entry.day_number}-${entry.dateLabel}`}>
                   <div>
                     <strong>
-                      {entry.day} • {entry.dateLabel}
+                      {entry.calendarDayLabel} • {entry.dateLabel}
                     </strong>
                     <p>{entry.lesson.title}</p>
                   </div>
@@ -58,7 +58,7 @@ export default async function CronogramaPage() {
                   <strong>Itens oficiais</strong>
                   <p>{todayLesson.lesson.prova_2023_items.join(", ") || "Sem itens oficiais no dia"}</p>
                 </div>
-                <span className="badge">{todayLesson.day}</span>
+                <span className="badge">{todayLesson.calendarDayLabel}</span>
               </div>
               <div className="cta-row" style={{ marginTop: 16 }}>
                 <Link className="primary-button" href="/estudo-hoje">

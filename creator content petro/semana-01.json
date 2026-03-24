@@ -5,7 +5,7 @@
   "main_subject": "Instrumentacao",
   "start_date": "2026-03-24",
   "end_date": "2026-03-29",
-  "active_day_numbers": [2, 3, 4, 5, 6, 7],
+  "active_day_numbers": [1, 2, 3, 4, 5, 6],
   "goals": [
     "Avancar em metrologia industrial",
     "Alternar diariamente Instrumentacao com Portugues ou Matematica",
@@ -40,6 +40,58 @@
       }
     },
     {
+      "day": "Segunda",
+      "day_number": 1,
+      "type": "Conteudo Novo",
+      "lesson": {
+        "title": "VIM - fundamentos",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Conceitos fundamentais, mensurando, grandeza, valor e unidade",
+        "day": 1,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=VIM+metrologia+instrumentacao+industrial",
+          "https://www.youtube.com/results?search_query=grandeza+valor+unidade+metrologia"
+        ],
+        "key_concepts": [
+          "grandeza",
+          "mensurando",
+          "valor de referencia",
+          "resultado de medicao"
+        ],
+        "questions": 20,
+        "question_source": "Estilo CEBRASPE",
+        "prova_2023_items": [],
+        "pitfalls": ["precisao nao e exatidao", "incerteza nao e erro"],
+        "review": [],
+        "checklist": ["assistir as videoaulas", "estudar os conceitos-base", "fazer 20 questoes", "registrar pegadinhas"],
+        "estimated_time": { "video_min": 60, "questions_min": 150, "review_min": 90, "total_min": 300 }
+      },
+      "companion_lesson": {
+        "title": "Compreensao e interpretacao de textos",
+        "subject": "Portugues",
+        "topic": "Interpretacao de texto",
+        "subtopic": "Compreensao global e inferencia",
+        "day": 1,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=interpretação+de+texto+concurso",
+          "https://www.youtube.com/results?search_query=compreensao+e+interpretacao+de+textos+cebraspe"
+        ],
+        "key_concepts": ["tema", "tese", "inferencia", "leitura literal e implicita"],
+        "questions": 12,
+        "question_source": "Banco importado + estilo CEBRASPE",
+        "prova_2023_items": [1, 2, 3, 9, 10],
+        "pitfalls": ["trocar ideia explicita por inferencia", "forcar conclusao que o texto nao sustenta"],
+        "review": [],
+        "checklist": ["assistir 1 aula", "ler texto curto", "resolver itens de interpretacao", "anotar vocabulario"],
+        "estimated_time": { "video_min": 45, "questions_min": 60, "review_min": 30, "total_min": 135 }
+      }
+    },
+    {
       "day": "Terca",
       "day_number": 2,
       "type": "Conteudo Novo",
@@ -70,24 +122,24 @@
         "estimated_time": { "video_min": 60, "questions_min": 150, "review_min": 90, "total_min": 300 }
       },
       "companion_lesson": {
-        "title": "Compreensao e interpretacao de textos",
-        "subject": "Portugues",
-        "topic": "Interpretacao de texto",
-        "subtopic": "Compreensao global e inferencia",
+        "title": "Teoria dos conjuntos",
+        "subject": "Matematica",
+        "topic": "Conjuntos",
+        "subtopic": "Conjuntos numericos e relacoes entre conjuntos",
         "day": 2,
         "week": 1,
         "phase": "Fundamentos",
         "videos": [
-          "https://www.youtube.com/results?search_query=interpretação+de+texto+concurso",
-          "https://www.youtube.com/results?search_query=compreensao+e+interpretacao+de+textos+cebraspe"
+          "https://www.youtube.com/results?search_query=teoria+dos+conjuntos+concurso",
+          "https://www.youtube.com/results?search_query=conjuntos+numéricos+relações+entre+conjuntos"
         ],
-        "key_concepts": ["tema", "tese", "inferencia", "leitura literal e implicita"],
+        "key_concepts": ["pertinencia", "inclusao", "uniao", "interseccao"],
         "questions": 12,
         "question_source": "Banco importado + estilo CEBRASPE",
-        "prova_2023_items": [1, 2, 3, 9, 10],
-        "pitfalls": ["trocar ideia explicita por inferencia", "forcar conclusao que o texto nao sustenta"],
+        "prova_2023_items": [27],
+        "pitfalls": ["confundir pertinencia com inclusao", "trocar subconjunto por elemento"],
         "review": [],
-        "checklist": ["assistir 1 aula", "ler texto curto", "resolver itens de interpretacao", "anotar vocabulario"],
+        "checklist": ["assistir 1 aula", "fazer mapa rapido de simbolos", "resolver item 27", "fazer extras"],
         "estimated_time": { "video_min": 45, "questions_min": 60, "review_min": 30, "total_min": 135 }
       }
     },
@@ -122,24 +174,24 @@
         "estimated_time": { "video_min": 60, "questions_min": 150, "review_min": 90, "total_min": 300 }
       },
       "companion_lesson": {
-        "title": "Teoria dos conjuntos",
-        "subject": "Matematica",
-        "topic": "Conjuntos",
-        "subtopic": "Conjuntos numericos e relacoes entre conjuntos",
+        "title": "Tipos textuais e ortografia",
+        "subject": "Portugues",
+        "topic": "Tipos textuais",
+        "subtopic": "Narracao, descricao, dissertacao e ortografia oficial",
         "day": 3,
         "week": 1,
         "phase": "Fundamentos",
         "videos": [
-          "https://www.youtube.com/results?search_query=teoria+dos+conjuntos+concurso",
-          "https://www.youtube.com/results?search_query=conjuntos+numéricos+relações+entre+conjuntos"
+          "https://www.youtube.com/results?search_query=tipos+textuais+concurso",
+          "https://www.youtube.com/results?search_query=ortografia+oficial+concurso"
         ],
-        "key_concepts": ["pertinencia", "inclusao", "uniao", "interseccao"],
+        "key_concepts": ["tipologia textual", "estrutura dissertativa", "grafia oficial", "acentuacao recorrente"],
         "questions": 12,
-        "question_source": "Banco importado + estilo CEBRASPE",
-        "prova_2023_items": [27],
-        "pitfalls": ["confundir pertinencia com inclusao", "trocar subconjunto por elemento"],
-        "review": [],
-        "checklist": ["assistir 1 aula", "fazer mapa rapido de simbolos", "resolver item 27", "fazer extras"],
+        "question_source": "Estilo CEBRASPE",
+        "prova_2023_items": [1, 4, 5],
+        "pitfalls": ["confundir genero textual com tipo textual", "trocar regra ortografica por uso estilizado"],
+        "review": ["relembrar inferencia do dia 2"],
+        "checklist": ["assistir 1 aula", "fazer resumo comparativo", "resolver questoes", "marcar erros de ortografia"],
         "estimated_time": { "video_min": 45, "questions_min": 60, "review_min": 30, "total_min": 135 }
       }
     },
@@ -169,25 +221,25 @@
         "estimated_time": { "video_min": 60, "questions_min": 150, "review_min": 90, "total_min": 300 }
       },
       "companion_lesson": {
-        "title": "Tipos textuais e ortografia",
-        "subject": "Portugues",
-        "topic": "Tipos textuais",
-        "subtopic": "Narracao, descricao, dissertacao e ortografia oficial",
+        "title": "Funcoes e equacoes",
+        "subject": "Matematica",
+        "topic": "Funcoes",
+        "subtopic": "Exponenciais, logaritmicas, trigonometricas e equacoes de 1o e 2o grau",
         "day": 4,
         "week": 1,
         "phase": "Fundamentos",
         "videos": [
-          "https://www.youtube.com/results?search_query=tipos+textuais+concurso",
-          "https://www.youtube.com/results?search_query=ortografia+oficial+concurso"
+          "https://www.youtube.com/results?search_query=função+exponencial",
+          "https://www.youtube.com/results?search_query=equacoes+1+e+2+grau+concurso"
         ],
-        "key_concepts": ["tipologia textual", "estrutura dissertativa", "grafia oficial", "acentuacao recorrente"],
-        "questions": 12,
-        "question_source": "Estilo CEBRASPE",
-        "prova_2023_items": [1, 4, 5],
-        "pitfalls": ["confundir genero textual com tipo textual", "trocar regra ortografica por uso estilizado"],
-        "review": ["relembrar inferencia do dia 2"],
-        "checklist": ["assistir 1 aula", "fazer resumo comparativo", "resolver questoes", "marcar erros de ortografia"],
-        "estimated_time": { "video_min": 45, "questions_min": 60, "review_min": 30, "total_min": 135 }
+        "key_concepts": ["dominio e imagem", "equacao exponencial", "equacao logaritmica", "equacao do segundo grau"],
+        "questions": 14,
+        "question_source": "Banco importado + estilo CEBRASPE",
+        "prova_2023_items": [28, 29, 30, 31],
+        "pitfalls": ["trocar comportamento da funcao por valor pontual", "errar manipulacao algébrica antes de aplicar log"],
+        "review": ["revisar conjuntos do dia 2"],
+        "checklist": ["assistir 2 aulas curtas", "resolver item 28-31", "fazer extras", "anotar formulas"],
+        "estimated_time": { "video_min": 50, "questions_min": 70, "review_min": 30, "total_min": 150 }
       }
     },
     {
@@ -213,24 +265,24 @@
         "estimated_time": { "video_min": 30, "questions_min": 180, "review_min": 90, "total_min": 300 }
       },
       "companion_lesson": {
-        "title": "Funcoes e equacoes",
-        "subject": "Matematica",
-        "topic": "Funcoes",
-        "subtopic": "Exponenciais, logaritmicas, trigonometricas e equacoes de 1o e 2o grau",
+        "title": "Classes de palavras e estruturas morfossintaticas",
+        "subject": "Portugues",
+        "topic": "Classes de palavras",
+        "subtopic": "Substantivos, adjetivos, verbos, pronomes, regencia, concordancia e pontuacao",
         "day": 5,
         "week": 1,
         "phase": "Fundamentos",
         "videos": [
-          "https://www.youtube.com/results?search_query=função+exponencial",
-          "https://www.youtube.com/results?search_query=equacoes+1+e+2+grau+concurso"
+          "https://www.youtube.com/results?search_query=classes+de+palavras+concurso",
+          "https://www.youtube.com/results?search_query=concordancia+verbal+nominal"
         ],
-        "key_concepts": ["dominio e imagem", "equacao exponencial", "equacao logaritmica", "equacao do segundo grau"],
+        "key_concepts": ["classe gramatical", "funcao no enunciado", "concordancia", "pontuacao"],
         "questions": 14,
         "question_source": "Banco importado + estilo CEBRASPE",
-        "prova_2023_items": [28, 29, 30, 31],
-        "pitfalls": ["trocar comportamento da funcao por valor pontual", "errar manipulacao algébrica antes de aplicar log"],
-        "review": ["revisar conjuntos do dia 3"],
-        "checklist": ["assistir 2 aulas curtas", "resolver item 28-31", "fazer extras", "anotar formulas"],
+        "prova_2023_items": [6, 7, 8, 15, 16],
+        "pitfalls": ["confundir classe da palavra com funcao sintatica", "errar concordancia por distancia do nucleo"],
+        "review": ["revisar tipos textuais do dia 3"],
+        "checklist": ["assistir 2 aulas curtas", "resolver itens de gramatica", "fazer mapa das classes", "anotar pegadinhas"],
         "estimated_time": { "video_min": 50, "questions_min": 70, "review_min": 30, "total_min": 150 }
       }
     },
@@ -257,55 +309,11 @@
         "estimated_time": { "video_min": 0, "questions_min": 180, "review_min": 120, "total_min": 300 }
       },
       "companion_lesson": {
-        "title": "Classes de palavras e estruturas morfossintaticas",
-        "subject": "Portugues",
-        "topic": "Classes de palavras",
-        "subtopic": "Substantivos, adjetivos, verbos, pronomes, regencia, concordancia e pontuacao",
-        "day": 6,
-        "week": 1,
-        "phase": "Fundamentos",
-        "videos": [
-          "https://www.youtube.com/results?search_query=classes+de+palavras+concurso",
-          "https://www.youtube.com/results?search_query=concordancia+verbal+nominal"
-        ],
-        "key_concepts": ["classe gramatical", "funcao no enunciado", "concordancia", "pontuacao"],
-        "questions": 14,
-        "question_source": "Banco importado + estilo CEBRASPE",
-        "prova_2023_items": [6, 7, 8, 15, 16],
-        "pitfalls": ["confundir classe da palavra com funcao sintatica", "errar concordancia por distancia do nucleo"],
-        "review": ["revisar tipos textuais do dia 4"],
-        "checklist": ["assistir 2 aulas curtas", "resolver itens de gramatica", "fazer mapa das classes", "anotar pegadinhas"],
-        "estimated_time": { "video_min": 50, "questions_min": 70, "review_min": 30, "total_min": 150 }
-      }
-    },
-    {
-      "day": "Domingo",
-      "day_number": 7,
-      "type": "Revisao",
-      "lesson": {
-        "title": "Revisao espacada - Metrologia",
-        "subject": "Instrumentacao",
-        "topic": "Metrologia",
-        "subtopic": "Revisao leve e descanso",
-        "day": 7,
-        "week": 1,
-        "phase": "Fundamentos",
-        "videos": ["https://www.youtube.com/results?search_query=resumo+metrologia+instrumentacao"],
-        "key_concepts": ["incerteza expandida", "tipos de erro", "certificado", "precisao versus exatidao"],
-        "questions": 10,
-        "question_source": "Revisao",
-        "prova_2023_items": [41, 42, 43],
-        "pitfalls": ["revisar arquivo de pegadinhas de metrologia"],
-        "review": ["rever dias 1 a 6"],
-        "checklist": ["reler pegadinhas", "fazer 10 questoes rapidas", "planejar semana 2", "descanso leve"],
-        "estimated_time": { "video_min": 30, "questions_min": 60, "review_min": 90, "total_min": 180 }
-      },
-      "companion_lesson": {
         "title": "Analise combinatoria e eventos independentes",
         "subject": "Matematica",
         "topic": "Analise combinatoria",
         "subtopic": "Permutacao, arranjo, combinacao e independencia",
-        "day": 7,
+        "day": 6,
         "week": 1,
         "phase": "Fundamentos",
         "videos": [
@@ -318,7 +326,7 @@
         "prova_2023_items": [25, 26],
         "pitfalls": ["usar arranjo quando a ordem nao importa", "esquecer produto de probabilidades em eventos independentes"],
         "review": ["revisar funcoes e conjuntos da semana"],
-        "checklist": ["assistir 1 aula", "resolver itens 25 e 26", "fazer extras", "encerrar a semana com resumo"],
+        "checklist": ["assistir 1 aula", "resolver itens 25 e 26", "fazer extras", "fechar resumo da semana"],
         "estimated_time": { "video_min": 45, "questions_min": 60, "review_min": 30, "total_min": 135 }
       }
     }

@@ -104,9 +104,9 @@ export default async function DashboardPage() {
               <div className="list-item">
                 <div>
                   <strong>{todayLesson.lesson.topic}</strong>
-                  <p>{todayLesson.lesson.subtopic}</p>
+                  <p>{todayLesson.calendarDayLabel} • {todayLesson.lesson.subtopic}</p>
                 </div>
-                <span className="badge">{todayLesson.day}</span>
+                <span className="badge">Hoje</span>
               </div>
               <div className="list-item">
                 <div>

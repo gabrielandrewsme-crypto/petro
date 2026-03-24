@@ -28,7 +28,7 @@ export default async function EstudoHojePage() {
     <>
       <SectionHeader
         title="Estudo de Hoje"
-        description={`${todayLesson.day} • ${todayLesson.dateLabel} • ${todayLesson.lesson.topic}${todayLesson.companion_lesson ? ` + ${todayLesson.companion_lesson.topic}` : ""}`}
+        description={`${todayLesson.calendarDayLabel} • ${todayLesson.dateLabel} • ${todayLesson.lesson.topic}${todayLesson.companion_lesson ? ` + ${todayLesson.companion_lesson.topic}` : ""}`}
         action={
           <Link className="primary-button" href="/questoes">
             Abrir banco de questoes
