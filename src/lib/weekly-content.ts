@@ -30,6 +30,7 @@ type WeekDay = {
   day_number: number;
   type: string;
   lesson: Lesson;
+  companion_lesson?: Lesson;
 };
 
 type WeekPlan = {
