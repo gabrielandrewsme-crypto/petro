@@ -25,7 +25,10 @@ export default async function CronogramaPage() {
                     <strong>
                       {entry.calendarDayLabel} • {entry.dateLabel}
                     </strong>
-                    <p>{entry.lesson.title}</p>
+                    <p>
+                      {entry.lesson.title}
+                      {entry.companion_lesson ? ` + ${entry.companion_lesson.title}` : ""}
+                    </p>
                   </div>
                   <span className="badge">{entry.isToday ? "Hoje" : entry.type}</span>
                 </div>
@@ -41,22 +44,38 @@ export default async function CronogramaPage() {
             <div className="list">
               <div className="list-item">
                 <div>
-                  <strong>{todayLesson.lesson.title}</strong>
+                  <strong>{todayLesson.lesson.subject}: {todayLesson.lesson.title}</strong>
                   <p>{todayLesson.lesson.subtopic}</p>
                 </div>
                 <span className="badge">{todayLesson.lesson.questions} questoes</span>
               </div>
+              {todayLesson.companion_lesson ? (
+                <div className="list-item">
+                  <div>
+                    <strong>{todayLesson.companion_lesson.subject}: {todayLesson.companion_lesson.title}</strong>
+                    <p>{todayLesson.companion_lesson.subtopic}</p>
+                  </div>
+                  <span className="badge">{todayLesson.companion_lesson.questions} questoes</span>
+                </div>
+              ) : null}
               <div className="list-item">
                 <div>
                   <strong>Videoaulas</strong>
-                  <p>{todayLesson.lesson.videos.length} links</p>
+                  <p>
+                    {todayLesson.lesson.videos.length}
+                    {todayLesson.companion_lesson ? ` + ${todayLesson.companion_lesson.videos.length}` : ""} links
+                  </p>
                 </div>
-                <span className="badge">{todayLesson.lesson.estimated_time.video_min} min</span>
+                <span className="badge">
+                  {todayLesson.lesson.estimated_time.video_min + (todayLesson.companion_lesson?.estimated_time.video_min ?? 0)} min
+                </span>
               </div>
               <div className="list-item">
                 <div>
                   <strong>Itens oficiais</strong>
-                  <p>{todayLesson.lesson.prova_2023_items.join(", ") || "Sem itens oficiais no dia"}</p>
+                  <p>
+                    {[...todayLesson.lesson.prova_2023_items, ...(todayLesson.companion_lesson?.prova_2023_items ?? [])].join(", ") || "Sem itens oficiais no dia"}
+                  </p>
                 </div>
                 <span className="badge">{todayLesson.calendarDayLabel}</span>
               </div>

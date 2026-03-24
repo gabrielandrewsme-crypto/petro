@@ -21,32 +21,6 @@
         "title": "VIM - fundamentos",
         "subject": "Instrumentacao",
         "topic": "Metrologia",
-        "subtopic": "Conceitos fundamentais",
-        "day": 1,
-        "week": 1,
-        "phase": "Fundamentos",
-        "videos": [
-          "https://www.youtube.com/results?search_query=VIM+metrologia+instrumentacao+industrial",
-          "https://www.youtube.com/results?search_query=grandeza+valor+unidade+metrologia"
-        ],
-        "key_concepts": ["grandeza", "mensurando", "valor de referencia", "resultado de medicao"],
-        "questions": 20,
-        "question_source": "Estilo CEBRASPE",
-        "prova_2023_items": [],
-        "pitfalls": ["precisao nao e exatidao", "incerteza nao e erro"],
-        "review": [],
-        "checklist": ["assistir as videoaulas", "estudar os conceitos-base", "fazer 20 questoes", "registrar pegadinhas"],
-        "estimated_time": { "video_min": 60, "questions_min": 150, "review_min": 90, "total_min": 300 }
-      }
-    },
-    {
-      "day": "Segunda",
-      "day_number": 1,
-      "type": "Conteudo Novo",
-      "lesson": {
-        "title": "VIM - fundamentos",
-        "subject": "Instrumentacao",
-        "topic": "Metrologia",
         "subtopic": "Conceitos fundamentais, mensurando, grandeza, valor e unidade",
         "day": 1,
         "week": 1,
