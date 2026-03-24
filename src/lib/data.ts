@@ -34,7 +34,9 @@ export async function getAppData(userId: string) {
   const videoLessons = db.video_lessons
     .filter((item) => item.userId === userId)
     .map((item) => ({ ...item, subject: subjects.find((subject) => subject.id === item.subjectId) ?? null }));
-  const materials = db.materials.filter((item) => item.userId === userId);
+  const materials = db.materials
+    .filter((item) => item.userId === userId)
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
   const industrialTopics = db.industrial_topics.filter((item) => item.userId === userId);
   const trapQuestions = db.trap_questions.filter((item) => item.userId === userId);
   const trapAttempts = db.trap_attempts.filter((item) => item.userId === userId).map((item) => ({ ...item, createdAt: new Date(item.createdAt) }));

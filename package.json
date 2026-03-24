@@ -10,7 +10,8 @@
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "import:neon": "tsx scripts/import-local-to-neon.ts",
-    "import:questions": "tsx scripts/import-exam-questions.ts"
+    "import:questions": "tsx scripts/import-exam-questions.ts",
+    "import:weekly-materials": "tsx scripts/import-weekly-materials.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
