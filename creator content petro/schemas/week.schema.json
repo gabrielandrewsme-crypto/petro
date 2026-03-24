@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WeekPlan",
+  "type": "object",
+  "required": [
+    "week",
+    "title",
+    "phase",
+    "main_subject",
+    "goals",
+    "prova_2023_items",
+    "days",
+    "weekly_simulado",
+    "spaced_review_topics"
+  ],
+  "properties": {
+    "week": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "phase": { "type": "string" },
+    "main_subject": { "type": "string" },
+    "goals": { "type": "array", "items": { "type": "string" } },
+    "prova_2023_items": { "type": "array", "items": { "type": "integer" } },
+    "days": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["day", "day_number", "type", "lesson"],
+        "properties": {
+          "day": { "type": "string" },
+          "day_number": { "type": "integer", "minimum": 1 },
+          "type": { "type": "string" },
+          "lesson": { "$ref": "./lesson.schema.json" }
+        }
+      }
+    },
+    "weekly_simulado": {
+      "type": "object",
+      "required": ["day", "questions", "topics_covered", "target_score"],
+      "properties": {
+        "day": { "type": "string" },
+        "questions": { "type": "integer", "minimum": 1 },
+        "topics_covered": { "type": "array", "items": { "type": "string" } },
+        "target_score": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "spaced_review_topics": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

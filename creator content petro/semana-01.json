@@ -1,0 +1,338 @@
+{
+  "week": 1,
+  "title": "Semana 1 - Metrologia e Calibracao",
+  "phase": "Fundamentos",
+  "main_subject": "Instrumentacao",
+  "goals": [
+    "Dominar conceitos fundamentais do VIM",
+    "Fechar os itens 41-43 da prova 2023 com justificativa correta",
+    "Mapear pegadinhas classicas de metrologia"
+  ],
+  "prova_2023_items": [41, 42, 43],
+  "days": [
+    {
+      "day": "Segunda",
+      "day_number": 1,
+      "type": "Conteudo Novo",
+      "lesson": {
+        "title": "VIM - fundamentos",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Conceitos fundamentais",
+        "day": 1,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=VIM+metrologia+instrumentacao+industrial",
+          "https://www.youtube.com/results?search_query=grandeza+valor+unidade+metrologia"
+        ],
+        "key_concepts": [
+          "grandeza",
+          "mensurando",
+          "valor de referencia",
+          "resultado de medicao"
+        ],
+        "questions": 20,
+        "question_source": "Estilo CEBRASPE",
+        "prova_2023_items": [],
+        "pitfalls": [
+          "precisao nao e exatidao",
+          "incerteza nao e erro"
+        ],
+        "review": [],
+        "checklist": [
+          "assistir as videoaulas",
+          "estudar os conceitos-base",
+          "fazer 20 questoes",
+          "registrar pegadinhas"
+        ],
+        "estimated_time": {
+          "video_min": 60,
+          "questions_min": 150,
+          "review_min": 90,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Terca",
+      "day_number": 2,
+      "type": "Conteudo Novo",
+      "lesson": {
+        "title": "Tipos de erro de medicao",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Sistematico, aleatorio e grosseiro",
+        "day": 2,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=erros+sistematicos+aleatorios+metrologia",
+          "https://www.youtube.com/results?search_query=tipos+erros+medicao+industrial"
+        ],
+        "key_concepts": [
+          "erro sistematico e corrigivel",
+          "erro aleatorio e estatistico",
+          "erro grosseiro e falha humana",
+          "curva de calibracao"
+        ],
+        "questions": 25,
+        "question_source": "Misto",
+        "prova_2023_items": [42],
+        "pitfalls": [
+          "erro sistematico nao desaparece so com repeticao",
+          "o item 42 e correto"
+        ],
+        "review": [
+          "revisar VIM do dia 1"
+        ],
+        "checklist": [
+          "assistir as videoaulas",
+          "estudar o item 42",
+          "fazer 25 questoes",
+          "revisar dia 1"
+        ],
+        "estimated_time": {
+          "video_min": 60,
+          "questions_min": 150,
+          "review_min": 90,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Quarta",
+      "day_number": 3,
+      "type": "Conteudo Novo",
+      "lesson": {
+        "title": "Incerteza de medicao",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Padrao, combinada e expandida",
+        "day": 3,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=incerteza+medicao+expandida+padrao+metrologia",
+          "https://www.youtube.com/results?search_query=GUM+incerteza+medicao+industrial"
+        ],
+        "key_concepts": [
+          "incerteza padrao",
+          "incerteza combinada",
+          "incerteza expandida",
+          "k igual a 2 implica aproximadamente 95 por cento"
+        ],
+        "questions": 25,
+        "question_source": "Misto",
+        "prova_2023_items": [41],
+        "pitfalls": [
+          "o item 41 erra ao falar em 75 por cento",
+          "incerteza expandida nao e so componente aleatoria"
+        ],
+        "review": [
+          "revisar tipos de erro do dia 2"
+        ],
+        "checklist": [
+          "assistir as videoaulas",
+          "analisar o item 41",
+          "fazer 25 questoes",
+          "revisar dia 2"
+        ],
+        "estimated_time": {
+          "video_min": 60,
+          "questions_min": 150,
+          "review_min": 90,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Quinta",
+      "day_number": 4,
+      "type": "Conteudo Novo",
+      "lesson": {
+        "title": "Certificado de calibracao",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Certificado e rastreabilidade",
+        "day": 4,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=certificado+calibracao+instrumentacao",
+          "https://www.youtube.com/results?search_query=rastreabilidade+metrologica+INMETRO"
+        ],
+        "key_concepts": [
+          "incerteza no certificado",
+          "erros e correcoes",
+          "rastreabilidade metrologica",
+          "cadeia de calibracoes"
+        ],
+        "questions": 20,
+        "question_source": "Misto",
+        "prova_2023_items": [43],
+        "pitfalls": [
+          "rastreabilidade nao e o mesmo que calibracao",
+          "o item 43 e correto"
+        ],
+        "review": [
+          "revisar incerteza do dia 3"
+        ],
+        "checklist": [
+          "assistir as videoaulas",
+          "estudar o item 43",
+          "fazer 20 questoes",
+          "revisar dia 3"
+        ],
+        "estimated_time": {
+          "video_min": 60,
+          "questions_min": 150,
+          "review_min": 90,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Sexta",
+      "day_number": 5,
+      "type": "Questoes",
+      "lesson": {
+        "title": "Prova 2023 - itens 41-43",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Revisao com prova real",
+        "day": 5,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=resolucao+questoes+metrologia+CEBRASPE"
+        ],
+        "key_concepts": [
+          "VIM",
+          "tipos de erro",
+          "incerteza",
+          "certificado"
+        ],
+        "questions": 40,
+        "question_source": "Prova 2023 + extras",
+        "prova_2023_items": [41, 42, 43],
+        "pitfalls": [
+          "41 errado",
+          "42 certo",
+          "43 certo"
+        ],
+        "review": [
+          "revisao completa dos dias 1 a 4"
+        ],
+        "checklist": [
+          "resolver 41-43 sem gabarito",
+          "corrigir",
+          "fazer 37 extras",
+          "registrar erros"
+        ],
+        "estimated_time": {
+          "video_min": 30,
+          "questions_min": 180,
+          "review_min": 90,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Sabado",
+      "day_number": 6,
+      "type": "Simulado",
+      "lesson": {
+        "title": "Simulado semanal - Metrologia",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Simulado completo",
+        "day": 6,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [],
+        "key_concepts": [],
+        "questions": 30,
+        "question_source": "Estilo CEBRASPE",
+        "prova_2023_items": [41, 42, 43],
+        "pitfalls": [
+          "revisar as pegadinhas antes do simulado"
+        ],
+        "review": [],
+        "checklist": [
+          "fazer simulado de 30 questoes",
+          "corrigir",
+          "calcular taxa",
+          "registrar pontos fracos"
+        ],
+        "estimated_time": {
+          "video_min": 0,
+          "questions_min": 180,
+          "review_min": 120,
+          "total_min": 300
+        }
+      }
+    },
+    {
+      "day": "Domingo",
+      "day_number": 7,
+      "type": "Revisao",
+      "lesson": {
+        "title": "Revisao espacada - Metrologia",
+        "subject": "Instrumentacao",
+        "topic": "Metrologia",
+        "subtopic": "Revisao leve e descanso",
+        "day": 7,
+        "week": 1,
+        "phase": "Fundamentos",
+        "videos": [
+          "https://www.youtube.com/results?search_query=resumo+metrologia+instrumentacao"
+        ],
+        "key_concepts": [
+          "incerteza expandida",
+          "tipos de erro",
+          "certificado",
+          "precisao versus exatidao"
+        ],
+        "questions": 10,
+        "question_source": "Revisao",
+        "prova_2023_items": [41, 42, 43],
+        "pitfalls": [
+          "revisar arquivo de pegadinhas de metrologia"
+        ],
+        "review": [
+          "rever dias 1 a 6"
+        ],
+        "checklist": [
+          "reler pegadinhas",
+          "fazer 10 questoes rapidas",
+          "planejar semana 2",
+          "descanso leve"
+        ],
+        "estimated_time": {
+          "video_min": 30,
+          "questions_min": 60,
+          "review_min": 90,
+          "total_min": 180
+        }
+      }
+    }
+  ],
+  "weekly_simulado": {
+    "day": "Sabado",
+    "questions": 30,
+    "topics_covered": [
+      "VIM",
+      "Tipos de erro",
+      "Incerteza de medicao",
+      "Certificado de calibracao"
+    ],
+    "target_score": 75
+  },
+  "spaced_review_topics": [
+    "VIM - revisar em 1, 7, 15 e 30 dias",
+    "Tipos de erro - revisar em 1, 7, 15 e 30 dias",
+    "Incerteza de medicao - revisar em 1, 7, 15 e 30 dias",
+    "Certificado de calibracao - revisar em 1, 7, 15 e 30 dias"
+  ]
+}

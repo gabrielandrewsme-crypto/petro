@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "fs/promises";
 import { randomUUID } from "crypto";
 import path from "path";
 import { neon } from "@neondatabase/serverless";
-import { DatabaseShape, Goal, GoalStatus, GoalType, IndustrialTopic, MaterialItem, MaterialType, MockExam, QuestionLog, ReviewItem, ReviewStatus, Session, StudyDay, Subject, TopicPriority, TopicStatus, TopicModule, TrapAttempt, TrapDifficulty, TrapQuestion, TrapTheme, TrapType, User, VideoCategory, VideoLesson } from "@/lib/types";
+import { DatabaseShape, Goal, GoalStatus, GoalType, IndustrialTopic, MaterialItem, MaterialType, MockExam, QuestionBankAttempt, QuestionBankItem, QuestionLog, ReviewItem, ReviewStatus, Session, StudyDay, Subject, TopicPriority, TopicStatus, TopicModule, TrapAttempt, TrapDifficulty, TrapQuestion, TrapTheme, TrapType, User, VideoCategory, VideoLesson } from "@/lib/types";
 
 const dbFile = path.join(process.cwd(), "data", "app-db.json");
 const NEON_STATE_ID = "main";
@@ -21,6 +21,8 @@ const emptyDb: DatabaseShape = {
   industrial_topics: [],
   trap_questions: [],
   trap_attempts: [],
+  question_bank: [],
+  question_bank_attempts: [],
 };
 
 function now() {
@@ -79,6 +81,8 @@ export async function readDb() {
       industrial_topics: parsed.industrial_topics ?? [],
       trap_questions: parsed.trap_questions ?? [],
       trap_attempts: parsed.trap_attempts ?? [],
+      question_bank: parsed.question_bank ?? [],
+      question_bank_attempts: parsed.question_bank_attempts ?? [],
     } as DatabaseShape;
   }
 
@@ -91,6 +95,8 @@ export async function readDb() {
     industrial_topics: parsed.industrial_topics ?? [],
     trap_questions: parsed.trap_questions ?? [],
     trap_attempts: parsed.trap_attempts ?? [],
+    question_bank: parsed.question_bank ?? [],
+    question_bank_attempts: parsed.question_bank_attempts ?? [],
   } as DatabaseShape;
 }
 
@@ -202,6 +208,15 @@ export function createTrapQuestionRecord(input: Omit<TrapQuestion, "id" | "creat
 }
 
 export function createTrapAttemptRecord(input: Omit<TrapAttempt, "id" | "createdAt">): TrapAttempt {
+  return { id: createId(), createdAt: now(), ...input };
+}
+
+export function createQuestionBankItemRecord(input: Omit<QuestionBankItem, "id" | "createdAt" | "updatedAt">): QuestionBankItem {
+  const timestamp = now();
+  return { id: createId(), createdAt: timestamp, updatedAt: timestamp, ...input };
+}
+
+export function createQuestionBankAttemptRecord(input: Omit<QuestionBankAttempt, "id" | "createdAt">): QuestionBankAttempt {
   return { id: createId(), createdAt: now(), ...input };
 }
 

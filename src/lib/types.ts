@@ -40,6 +40,11 @@ export enum TopicModule {
   PORTUGUES = "PORTUGUES",
 }
 
+export enum QuestionSource {
+  PETROBRAS_2023_BASICO = "PETROBRAS_2023_BASICO",
+  PETROBRAS_2023_INSTRUMENTACAO = "PETROBRAS_2023_INSTRUMENTACAO",
+}
+
 export enum TopicPriority {
   NORMAL = "NORMAL",
   HIGH = "HIGH",
@@ -248,6 +253,32 @@ export type TrapAttempt = {
   createdAt: string;
 };
 
+export type QuestionBankItem = {
+  id: string;
+  source: QuestionSource;
+  year: number;
+  examTitle: string;
+  module: TopicModule;
+  discipline: string;
+  topicSlug: string;
+  topicTitle: string;
+  itemNumber: number;
+  statement: string;
+  correctAnswer: boolean | null;
+  isAnnulled: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type QuestionBankAttempt = {
+  id: string;
+  userId: string;
+  questionId: string;
+  answer: boolean;
+  isCorrect: boolean;
+  createdAt: string;
+};
+
 export type DatabaseShape = {
   users: User[];
   sessions: Session[];
@@ -262,4 +293,6 @@ export type DatabaseShape = {
   industrial_topics: IndustrialTopic[];
   trap_questions: TrapQuestion[];
   trap_attempts: TrapAttempt[];
+  question_bank: QuestionBankItem[];
+  question_bank_attempts: QuestionBankAttempt[];
 };

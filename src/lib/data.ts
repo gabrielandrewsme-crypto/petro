@@ -38,6 +38,13 @@ export async function getAppData(userId: string) {
   const industrialTopics = db.industrial_topics.filter((item) => item.userId === userId);
   const trapQuestions = db.trap_questions.filter((item) => item.userId === userId);
   const trapAttempts = db.trap_attempts.filter((item) => item.userId === userId).map((item) => ({ ...item, createdAt: new Date(item.createdAt) }));
+  const questionBank = db.question_bank
+    .map((item) => ({ ...item, createdAt: new Date(item.createdAt), updatedAt: new Date(item.updatedAt) }))
+    .sort((a, b) => a.itemNumber - b.itemNumber);
+  const questionBankAttempts = db.question_bank_attempts
+    .filter((item) => item.userId === userId)
+    .map((item) => ({ ...item, createdAt: new Date(item.createdAt) }))
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
   const today = startOfDay(new Date());
   const weekStart = startOfWeek(today, { weekStartsOn: 1 });
@@ -46,6 +53,7 @@ export async function getAppData(userId: string) {
   const weeklyLogs = studyDays.filter((item) => item.date >= weekStart && item.date <= weekEnd);
   const reviewsToday = reviews.filter((item) => item.status === ReviewStatus.PENDING && item.dueDate <= addDays(today, 1));
   const questionsToday = questionLogs.filter((item) => isSameDay(item.createdAt, today));
+  const questionBankAttemptsToday = questionBankAttempts.filter((item) => isSameDay(item.createdAt, today));
   const hoursPlanned = dailyLogs.reduce((sum, item) => sum + item.plannedHours, 0);
   const hoursStudied = dailyLogs.reduce((sum, item) => sum + item.studiedHours, 0);
   const progressToday = hoursPlanned > 0 ? Math.min((hoursStudied / hoursPlanned) * 100, 100) : 0;
@@ -72,10 +80,11 @@ export async function getAppData(userId: string) {
 
   const weeklyEvolution = eachDayOfInterval({ start: weekStart, end: weekEnd }).map((date) => {
     const logs = questionLogs.filter((item) => isSameDay(item.createdAt, date));
+    const attempts = questionBankAttempts.filter((item) => isSameDay(item.createdAt, date));
     return {
       label: format(date, "EEE"),
-      liquidScore: logs.reduce((sum, item) => sum + item.liquidScore, 0),
-      solved: logs.reduce((sum, item) => sum + item.quantity, 0),
+      liquidScore: logs.reduce((sum, item) => sum + item.liquidScore, 0) + attempts.reduce((sum, item) => sum + (item.isCorrect ? 1 : -1), 0),
+      solved: logs.reduce((sum, item) => sum + item.quantity, 0) + attempts.length,
     };
   });
 
@@ -183,6 +192,66 @@ export async function getAppData(userId: string) {
     };
   });
 
+  const questionBankSummaries = questionBank.map((question) => {
+    const attempts = questionBankAttempts.filter((attempt) => attempt.questionId === question.id);
+    const correct = attempts.filter((attempt) => attempt.isCorrect).length;
+    const wrong = attempts.filter((attempt) => !attempt.isCorrect).length;
+    const lastAttempt = attempts[0] ?? null;
+    const accuracyRate = attempts.length ? (correct / attempts.length) * 100 : 0;
+
+    return {
+      ...question,
+      attempts,
+      attemptsCount: attempts.length,
+      correct,
+      wrong,
+      accuracyRate,
+      answered: attempts.length > 0,
+      lastAttempt,
+    };
+  });
+
+  const importedQuestionStats = {
+    total: questionBankSummaries.length,
+    answered: questionBankSummaries.filter((item) => item.answered).length,
+    correct: questionBankAttempts.filter((item) => item.isCorrect).length,
+    wrong: questionBankAttempts.filter((item) => !item.isCorrect).length,
+    byDiscipline: Object.values(TopicModule).map((module) => {
+      const label = module === TopicModule.INSTRUMENTACAO ? "Instrumentação" : module === TopicModule.MATEMATICA ? "Matemática" : "Português";
+      const items = questionBankSummaries.filter((item) => item.module === module);
+      const attempts = items.flatMap((item) => item.attempts);
+      const correct = attempts.filter((item) => item.isCorrect).length;
+      return {
+        module,
+        label,
+        total: items.length,
+        answered: attempts.length,
+        accuracyRate: attempts.length ? (correct / attempts.length) * 100 : 0,
+      };
+    }),
+    topTopics: Array.from(
+      new Map(
+        questionBankSummaries.map((item) => [
+          item.topicTitle,
+          { topic: item.topicTitle, wrong: 0, attempts: 0, module: item.module },
+        ]),
+      ).values(),
+    ),
+  };
+
+  questionBankSummaries.forEach((item) => {
+    const topic = importedQuestionStats.topTopics.find((entry) => entry.topic === item.topicTitle);
+    if (topic) {
+      topic.wrong += item.wrong;
+      topic.attempts += item.attemptsCount;
+    }
+  });
+
+  importedQuestionStats.topTopics = importedQuestionStats.topTopics
+    .filter((item) => item.attempts > 0)
+    .sort((a, b) => b.wrong - a.wrong)
+    .slice(0, 5);
+
   return {
     user: { ...user, examDate: user.examDate ? new Date(user.examDate) : null },
     subjects,
@@ -198,7 +267,7 @@ export async function getAppData(userId: string) {
       progressToday,
       hoursStudied,
       hoursPlanned,
-      questionsToday: questionsToday.reduce((sum, item) => sum + item.quantity, 0),
+      questionsToday: questionsToday.reduce((sum, item) => sum + item.quantity, 0) + questionBankAttemptsToday.length,
       reviewsPending: reviewsToday.length,
       weeklyProgress,
       streak,
@@ -220,6 +289,11 @@ export async function getAppData(userId: string) {
       performanceBySubject,
       weeklyEvolution,
       errorFrequency,
+    },
+    questionBank: {
+      questions: questionBankSummaries,
+      attempts: questionBankAttempts,
+      stats: importedQuestionStats,
     },
     instrumentation: {
       topicsByBlock: instrumentationTopicsByBlock,

@@ -39,6 +39,8 @@ async function main() {
     industrial_topics: mergeById(remoteDb.industrial_topics, localDb.industrial_topics ?? []),
     trap_questions: mergeById(remoteDb.trap_questions, localDb.trap_questions ?? []),
     trap_attempts: mergeById(remoteDb.trap_attempts, localDb.trap_attempts ?? []),
+    question_bank: mergeById(remoteDb.question_bank, localDb.question_bank ?? []),
+    question_bank_attempts: mergeById(remoteDb.question_bank_attempts, localDb.question_bank_attempts ?? []),
   };
 
   await writeDb(merged);
@@ -57,6 +59,8 @@ async function main() {
     industrial_topics: [remoteDb.industrial_topics.length, merged.industrial_topics.length],
     trap_questions: [remoteDb.trap_questions.length, merged.trap_questions.length],
     trap_attempts: [remoteDb.trap_attempts.length, merged.trap_attempts.length],
+    question_bank: [remoteDb.question_bank.length, merged.question_bank.length],
+    question_bank_attempts: [remoteDb.question_bank_attempts.length, merged.question_bank_attempts.length],
   };
 
   console.log(JSON.stringify(summary, null, 2));

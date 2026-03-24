@@ -5,8 +5,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireUser } from "@/lib/auth";
-import { createGoalRecord, createMaterialRecord, createMockExamRecord, createQuestionLogRecord, createReviewRecord, createStudyDayRecord, createTrapAttemptRecord, createVideoLessonRecord, mutateDb } from "@/lib/db";
-import { GoalStatus, GoalType, MaterialType, ReviewStatus, TopicStatus, VideoCategory } from "@/lib/types";
+import { createGoalRecord, createMaterialRecord, createMockExamRecord, createQuestionBankAttemptRecord, createQuestionLogRecord, createReviewRecord, createStudyDayRecord, createTrapAttemptRecord, createVideoLessonRecord, mutateDb } from "@/lib/db";
+import { GoalStatus, GoalType, MaterialType, ReviewStatus, TopicModule, TopicStatus, VideoCategory } from "@/lib/types";
 import { liquidScore } from "@/lib/utils";
 
 const studySchema = z.object({
@@ -415,6 +415,63 @@ export async function answerTrapQuestionAction(formData: FormData) {
   });
 
   revalidatePath("/pegadinhas-cebraspe");
+  revalidatePath("/dashboard");
+  revalidatePath("/revisoes");
+}
+
+export async function answerQuestionBankAction(formData: FormData) {
+  const user = await requireUser();
+  const questionId = String(formData.get("questionId") ?? "");
+  const answer = String(formData.get("answer") ?? "") === "true";
+
+  await mutateDb((data) => {
+    const question = data.question_bank.find((item) => item.id === questionId);
+    if (!question || question.isAnnulled || question.correctAnswer === null) {
+      return;
+    }
+
+    data.question_bank_attempts = data.question_bank_attempts.filter((item) => !(item.userId === user.id && item.questionId === questionId));
+
+    const isCorrect = question.correctAnswer === answer;
+    data.question_bank_attempts.push(
+      createQuestionBankAttemptRecord({
+        userId: user.id,
+        questionId,
+        answer,
+        isCorrect,
+      }),
+    );
+
+    const linkedTopic = data.industrial_topics.find((item) => item.userId === user.id && item.module === question.module && item.slug === question.topicSlug);
+    if (linkedTopic && linkedTopic.status === TopicStatus.NOT_STARTED) {
+      linkedTopic.status = TopicStatus.IN_PROGRESS;
+      linkedTopic.updatedAt = new Date().toISOString();
+    }
+
+    if (!isCorrect) {
+      const subjectName =
+        question.module === TopicModule.INSTRUMENTACAO ? "Sensores" : question.module === TopicModule.MATEMATICA ? "Matemática" : "Português";
+      const subject = data.subjects.find((item) => item.userId === user.id && item.name === subjectName);
+
+      data.review_system.push(
+        ...[1, 7, 15, 30].map((intervalDays) =>
+          createReviewRecord({
+            userId: user.id,
+            subjectId: subject?.id ?? null,
+            topicId: linkedTopic?.id ?? null,
+            topic: `${question.topicTitle} · Item ${question.itemNumber}`,
+            sourceStudyDay: null,
+            dueDate: addDays(new Date(), intervalDays).toISOString(),
+            intervalDays,
+            status: ReviewStatus.PENDING,
+            reviewedAt: null,
+          }),
+        ),
+      );
+    }
+  });
+
+  revalidatePath("/questoes");
   revalidatePath("/dashboard");
   revalidatePath("/revisoes");
 }
