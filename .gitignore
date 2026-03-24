@@ -1,0 +1,15 @@
+node_modules
+.next
+.vercel
+dist
+coverage
+*.log
+.agent
+data/app-db.json
+logo br.png
+.env
+.env.local
+prisma/dev.db
+prisma/dev.db-journal
+*.db
+*.db-journal

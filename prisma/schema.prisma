@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum GoalType {
+  WEEKLY
+  MONTHLY
+  PLAN_100
+}
+
+enum GoalStatus {
+  PENDING
+  ACTIVE
+  COMPLETED
+}
+
+enum MaterialType {
+  PDF
+  LINK
+  NOTE
+}
+
+enum ReviewStatus {
+  PENDING
+  DONE
+  RESCHEDULED
+}
+
+enum VideoCategory {
+  INSTRUMENTACAO
+  MATEMATICA
+  PORTUGUES
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  examDate      DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  sessions      Session[]
+  studyDays     StudyDay[]
+  subjects      Subject[]
+  videoLessons  VideoLesson[]
+  questionLogs  QuestionLog[]
+  reviewSystem  ReviewSystem[]
+  mockExams     MockExam[]
+  goals         Goal[]
+  materials     MaterialItem[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Subject {
+  id          String        @id @default(cuid())
+  userId      String
+  name        String
+  category    String
+  description String?
+  color       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  studyDays   StudyDay[]
+  videoLessons VideoLesson[]
+  questionLogs QuestionLog[]
+  reviewItems ReviewSystem[]
+
+  @@index([userId, category])
+}
+
+model StudyDay {
+  id              String    @id @default(cuid())
+  userId          String
+  subjectId       String?
+  date            DateTime
+  topic           String
+  plannedHours    Float
+  studiedHours    Float
+  notes           String?
+  questionsSolved Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject         Subject? @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, date])
+}
+
+model VideoLesson {
+  id          String        @id @default(cuid())
+  userId      String
+  subjectId   String?
+  title       String
+  url         String
+  category    VideoCategory
+  watched     Boolean       @default(false)
+  favorite    Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject     Subject?      @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, category])
+}
+
+model QuestionLog {
+  id                String    @id @default(cuid())
+  userId            String
+  subjectId         String?
+  discipline        String
+  topic             String
+  quantity          Int
+  correctAnswers    Int
+  wrongAnswers      Int
+  accuracyRate      Float
+  liquidScore       Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject           Subject? @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+}
+
+model ReviewSystem {
+  id             String       @id @default(cuid())
+  userId         String
+  subjectId      String?
+  topic          String
+  sourceStudyDay String?
+  dueDate        DateTime
+  intervalDays   Int
+  status         ReviewStatus @default(PENDING)
+  reviewedAt     DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject        Subject?     @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+
+  @@index([userId, dueDate, status])
+}
+
+model MockExam {
+  id           String    @id @default(cuid())
+  userId       String
+  title        String
+  questionCount Int
+  durationMinutes Int
+  correctAnswers Int
+  wrongAnswers Int
+  liquidScore  Int
+  completedAt  DateTime
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, completedAt])
+}
+
+model Goal {
+  id          String     @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  type        GoalType
+  weekLabel   String?
+  dayNumber   Int?
+  status      GoalStatus @default(PENDING)
+  progress    Float      @default(0)
+  targetValue Float      @default(100)
+  dueDate     DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type, dayNumber])
+}
+
+model MaterialItem {
+  id        String       @id @default(cuid())
+  userId    String
+  title     String
+  type      MaterialType
+  url       String?
+  notes     String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+}
