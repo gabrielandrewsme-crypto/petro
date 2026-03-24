@@ -13,6 +13,7 @@ import {
   Gauge,
   Languages,
   LogOut,
+  MessageSquareText,
   RadioTower,
   Search,
 } from "lucide-react";
@@ -28,6 +29,7 @@ const navItems = [
   { href: "/cronograma", label: "Cronograma", icon: CalendarDays },
   { href: "/revisoes", label: "Revisões", icon: ClipboardCheck },
   { href: "/questoes", label: "Questões", icon: ChartColumnBig },
+  { href: "/assistente-especialista", label: "Assistente", icon: MessageSquareText },
   { href: "/simulados", label: "Simulados", icon: BookOpen },
   { href: "/videoaulas", label: "Videoaulas", icon: CirclePlay },
   { href: "/materiais", label: "Materiais", icon: FileStack },
