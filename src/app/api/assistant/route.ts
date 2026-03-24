@@ -64,7 +64,11 @@ export async function POST(request: Request) {
       instructions: buildAssistantInstructions(JSON.stringify(context)),
       input: trimmedMessages.map((message) => ({
         role: message.role,
-        content: [{ type: "input_text", text: message.content }],
+        content: [
+          message.role === "assistant"
+            ? { type: "output_text", text: message.content }
+            : { type: "input_text", text: message.content },
+        ],
       })),
     }),
   });
